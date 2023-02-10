@@ -14,6 +14,9 @@ OBJECTS = $(patsubst $(SOURCE_DIR)/%.c, $(BUILD_DIR)/%.o, $(SOURCES))
 # targets
 all: $(BUILD_DIR)/$(EXECUTABLE)
 
+run: $(BUILD_DIR)/$(EXECUTABLE)
+	@clear && $^
+
 $(BUILD_DIR)/$(EXECUTABLE): $(OBJECTS)
 	$(CC) $(CFLAGS) $^ -o $@ $(LIBS)
 
