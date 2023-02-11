@@ -5,7 +5,7 @@
 // defines
 #define VERSION "0.1.0"
 
-#define TEXT_SIZE 488 // the size of a text buffer
+#define TEXT_SIZE 487 // the size of a text buffer
 #define TEXT_OFFSET 22 // the offset of the string in the bootloader
 
 // the bootloader to be written to the MBR
@@ -97,6 +97,10 @@ int main() {
     }
     
     // copy the text into the bootloader code
+    if (text[strlen(text) - 1] == '\n') {
+        text[strlen(text) - 1] = '\0';
+    }
+    
     memcpy(bootloader + TEXT_OFFSET, text, TEXT_SIZE);
 
     // write the bootloader to the MBR
